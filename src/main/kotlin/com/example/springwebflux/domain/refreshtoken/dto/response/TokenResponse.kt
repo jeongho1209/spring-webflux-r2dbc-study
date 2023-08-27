@@ -1,4 +1,4 @@
-package com.example.springwebflux.domain.auth.router.dto.response
+package com.example.springwebflux.domain.refreshtoken.dto.response
 
 import java.time.LocalDateTime
 

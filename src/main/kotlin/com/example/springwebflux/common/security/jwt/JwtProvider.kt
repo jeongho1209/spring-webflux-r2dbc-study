@@ -1,8 +1,8 @@
 package com.example.springwebflux.common.security.jwt
 
 import com.example.springwebflux.common.security.SecurityProperties
-import com.example.springwebflux.domain.auth.exception.RefreshTokenSaveFailedException
-import com.example.springwebflux.domain.auth.router.dto.response.TokenResponse
+import com.example.springwebflux.domain.refreshtoken.exception.RefreshTokenSaveFailedException
+import com.example.springwebflux.domain.refreshtoken.dto.response.TokenResponse
 import io.jsonwebtoken.Header.JWT_TYPE
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

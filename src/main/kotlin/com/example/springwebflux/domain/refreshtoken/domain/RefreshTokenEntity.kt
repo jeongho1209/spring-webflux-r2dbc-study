@@ -1,4 +1,4 @@
-package com.example.springwebflux.domain.auth.domain
+package com.example.springwebflux.domain.refreshtoken.domain
 
 import java.util.UUID
 
