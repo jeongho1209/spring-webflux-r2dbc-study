@@ -1,6 +1,6 @@
 package com.example.springwebflux.common.error
 
-class InternalServerError(
+class InternalServerErrorException(
     errorMessage: String,
 ) : BaseException(errorMessage, 500) {
     companion object {

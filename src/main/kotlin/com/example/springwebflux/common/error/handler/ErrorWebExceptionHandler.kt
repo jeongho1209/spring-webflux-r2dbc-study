@@ -1,10 +1,10 @@
 package com.example.springwebflux.common.error.handler
 
-import com.example.springwebflux.common.error.response.BindErrorResponse
-import com.example.springwebflux.common.error.response.ErrorResponse
 import com.example.springwebflux.common.error.BaseException
 import com.example.springwebflux.common.error.ExceptionAttribute
-import com.example.springwebflux.common.error.InternalServerError
+import com.example.springwebflux.common.error.InternalServerErrorException
+import com.example.springwebflux.common.error.response.BindErrorResponse
+import com.example.springwebflux.common.error.response.ErrorResponse
 import org.springframework.boot.autoconfigure.web.WebProperties
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler
 import org.springframework.boot.web.reactive.error.ErrorAttributes
@@ -48,7 +48,11 @@ class ErrorWebExceptionHandler(
         when (val e = super.getError(request)) {
             is BaseException -> e.toErrorResponse()
             is WebExchangeBindException -> e.getBindErrorMessage()
-            else -> InternalServerError(InternalServerError.UNEXPECTED_EXCEPTION).toErrorResponse()
+// TODO     is ResponseStatusException ->
+            else -> {
+                e.printStackTrace()
+                InternalServerErrorException(InternalServerErrorException.UNEXPECTED_EXCEPTION).toErrorResponse()
+            }
         }
 
     private fun BindingResult.getBindErrorMessage(): Mono<ServerResponse> {
