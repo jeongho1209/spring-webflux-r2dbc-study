@@ -14,6 +14,7 @@ class UserRouter {
             contentType(MediaType.APPLICATION_JSON)
             POST("/signup", userHandler::signUp)
             POST("/signIn", userHandler::signIn)
+            GET("", userHandler::getUserInfo)
         }
     }
 }
