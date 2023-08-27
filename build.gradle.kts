@@ -23,7 +23,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("io.asyncer:r2dbc-mysql:1.0.2")
 
-    // reactive
+    // redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+
+    // webflux
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
@@ -39,6 +42,7 @@ dependencies {
     // security
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
 }
 
 tasks.withType<KotlinCompile> {
