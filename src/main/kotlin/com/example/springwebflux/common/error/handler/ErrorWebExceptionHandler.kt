@@ -3,6 +3,7 @@ package com.example.springwebflux.common.error.handler
 import com.example.springwebflux.common.error.BaseException
 import com.example.springwebflux.common.error.ExceptionAttribute
 import com.example.springwebflux.common.error.InternalServerErrorException
+import com.example.springwebflux.common.error.RequestHandlerNotFoundException
 import com.example.springwebflux.common.error.response.BindErrorResponse
 import com.example.springwebflux.common.error.response.ErrorResponse
 import org.springframework.boot.autoconfigure.web.WebProperties
@@ -21,6 +22,7 @@ import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.server.ResponseStatusException
 import reactor.core.publisher.Mono
 
 @Order(-2)
@@ -48,7 +50,7 @@ class ErrorWebExceptionHandler(
         when (val e = super.getError(request)) {
             is BaseException -> e.toErrorResponse()
             is WebExchangeBindException -> e.getBindErrorMessage()
-// TODO     is ResponseStatusException ->
+            is ResponseStatusException -> RequestHandlerNotFoundException(RequestHandlerNotFoundException.REQUEST_HANDLER_NOT_FOUND).toErrorResponse()
             else -> {
                 e.printStackTrace()
                 InternalServerErrorException(InternalServerErrorException.UNEXPECTED_EXCEPTION).toErrorResponse()
