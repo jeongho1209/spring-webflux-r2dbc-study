@@ -3,3 +3,8 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+
+jwt:
+  access_exp: ${ACCESS_EXP}
+  refresh_exp: ${REFRESH_EXP}
+  secret_key: ${SECRET_KEY}
