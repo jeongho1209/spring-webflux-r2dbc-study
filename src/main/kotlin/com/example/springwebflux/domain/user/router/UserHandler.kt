@@ -1,7 +1,9 @@
 package com.example.springwebflux.domain.user.router
 
-import com.example.springwebflux.domain.auth.router.dto.response.TokenResponse
+import com.example.springwebflux.domain.refreshtoken.dto.response.TokenResponse
+import com.example.springwebflux.domain.user.router.dto.request.UserSignInRequest
 import com.example.springwebflux.domain.user.router.dto.request.UserSignUpRequest
+import com.example.springwebflux.domain.user.service.UserSignInService
 import com.example.springwebflux.domain.user.service.UserSignUpService
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Component
@@ -13,6 +15,7 @@ import java.net.URI
 @Component
 class UserHandler(
     private val userSignUpService: UserSignUpService,
+    private val userSignInService: UserSignInService,
 ) {
 
     suspend fun signUp(serverRequest: ServerRequest): ServerResponse {
@@ -23,4 +26,13 @@ class UserHandler(
 
     private suspend fun ServerRequest.getUserSignUpRequestBody() =
         this.bodyToMono(UserSignUpRequest::class.java).awaitSingle()
+
+    suspend fun signIn(serverRequest: ServerRequest): ServerResponse {
+        val requestBody: UserSignInRequest = serverRequest.getUserSignInRequestBody()
+        val tokenResponse: TokenResponse = userSignInService.signIn(requestBody)
+        return ServerResponse.ok().bodyValueAndAwait(tokenResponse)
+    }
+
+    private suspend fun ServerRequest.getUserSignInRequestBody() =
+        this.bodyToMono(UserSignInRequest::class.java).awaitSingle()
 }

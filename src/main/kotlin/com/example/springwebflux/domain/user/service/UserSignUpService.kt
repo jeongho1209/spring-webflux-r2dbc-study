@@ -1,7 +1,7 @@
 package com.example.springwebflux.domain.user.service
 
 import com.example.springwebflux.common.security.jwt.JwtProvider
-import com.example.springwebflux.domain.auth.router.dto.response.TokenResponse
+import com.example.springwebflux.domain.refreshtoken.dto.response.TokenResponse
 import com.example.springwebflux.domain.user.domain.UserEntity
 import com.example.springwebflux.domain.user.domain.repository.UserRepository
 import com.example.springwebflux.domain.user.exception.UserExistException

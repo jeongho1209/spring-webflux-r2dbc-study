@@ -13,6 +13,7 @@ class UserRouter {
         "/users".nest {
             contentType(MediaType.APPLICATION_JSON)
             POST("/signup", userHandler::signUp)
+            POST("/signIn", userHandler::signIn)
         }
     }
 }
