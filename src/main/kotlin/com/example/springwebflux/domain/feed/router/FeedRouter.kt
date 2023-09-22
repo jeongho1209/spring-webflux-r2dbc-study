@@ -13,6 +13,7 @@ class FeedRouter {
         "/feeds".nest {
             contentType(MediaType.APPLICATION_JSON)
             POST("", feedHandler::createFeed)
+            GET("", feedHandler::getFeedList)
         }
     }
 }
