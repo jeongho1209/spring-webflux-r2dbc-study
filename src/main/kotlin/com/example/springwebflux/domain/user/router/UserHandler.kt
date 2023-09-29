@@ -10,6 +10,7 @@ import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.reactive.function.server.bodyToMono
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import java.net.URI
 
@@ -27,7 +28,7 @@ class UserHandler(
     }
 
     private suspend fun ServerRequest.getUserSignUpRequestBody() =
-        this.bodyToMono(UserSignUpRequest::class.java).awaitSingle()
+        this.bodyToMono<UserSignUpRequest>().awaitSingle()
 
     suspend fun signIn(serverRequest: ServerRequest): ServerResponse {
         val requestBody: UserSignInRequest = serverRequest.getUserSignInRequestBody()
@@ -36,7 +37,7 @@ class UserHandler(
     }
 
     private suspend fun ServerRequest.getUserSignInRequestBody() =
-        this.bodyToMono(UserSignInRequest::class.java).awaitSingle()
+        this.bodyToMono<UserSignInRequest>().awaitSingle()
 
     suspend fun getUserInfo(serverRequest: ServerRequest): ServerResponse {
         val userInfoResponse = queryUserInfoService.getUserInfo()
