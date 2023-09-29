@@ -14,6 +14,7 @@ class FeedRouter {
             contentType(MediaType.APPLICATION_JSON)
             POST("", feedHandler::createFeed)
             GET("", feedHandler::getFeedList)
+            DELETE("/{feedId}", feedHandler::deleteFeed)
         }
     }
 }
