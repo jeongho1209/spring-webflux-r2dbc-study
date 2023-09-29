@@ -15,6 +15,7 @@ class FeedRouter {
             POST("", feedHandler::createFeed)
             GET("", feedHandler::getFeedList)
             DELETE("/{feedId}", feedHandler::deleteFeed)
+            PUT("/{feedId}", feedHandler::updateFeed)
         }
     }
 }
