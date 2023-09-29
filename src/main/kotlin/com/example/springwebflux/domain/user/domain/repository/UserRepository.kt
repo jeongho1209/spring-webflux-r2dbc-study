@@ -7,5 +7,5 @@ import java.util.UUID
 interface UserRepository : CoroutineCrudRepository<UserEntity, UUID> {
     suspend fun existsByAccountId(accountId: String): Boolean
     suspend fun findByAccountId(accountId: String): UserEntity?
-    override suspend fun findById(id: UUID): UserEntity
+    override suspend fun findById(id: UUID): UserEntity?
 }
