@@ -9,6 +9,17 @@ class FeedEntity(
     @get:JvmName("getIdentifier")
     override var id: UUID = UUID(0, 0),
     val userId: UUID,
-    val title: String,
-    val content: String,
-) : BaseUUIDEntity(id)
+    title: String,
+    content: String,
+) : BaseUUIDEntity(id) {
+    var title = title
+        private set
+    var content = content
+        private set
+
+    fun updateFeed(title: String, content: String): FeedEntity {
+        this.title = title
+        this.content = content
+        return this
+    }
+}
