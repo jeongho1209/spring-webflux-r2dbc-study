@@ -15,12 +15,13 @@ class DeleteFeedService(
 
     @Transactional
     suspend fun deleteFeed(feedId: UUID) {
+        val user = securityFacade.getCurrentUser()
         val feed = feedRepository.findById(feedId)
             ?: throw FeedNotFoundException(FeedNotFoundException.FEED_NOT_FOUND_EXCEPTION)
 
-        securityFacade.validateUserId(
+        user.validateUserId(
             targetUserId = feed.userId,
-            currentUserId = securityFacade.getCurrentUser().id,
+            currentUserId = user.id,
         )
 
         feedRepository.delete(feed)
